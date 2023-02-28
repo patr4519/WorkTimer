@@ -3,7 +3,7 @@ import React from "react";
 function App() {
   return (
     <>
-      <CountDown hours={0} minutes={0} seconds={0} />
+      <CountDown />
     </>
   );
 }
@@ -30,7 +30,7 @@ const CountDown = ({ hours = 0, minutes = 0, seconds = 0 }) => {
   };
 
   React.useEffect(() => {
-    const timerID = setInterval(() => tick(), 1);
+    const timerID = setInterval(() => tick(), 1000);
     return () => clearInterval(timerID);
   });
 
