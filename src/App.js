@@ -9,12 +9,11 @@ function App() {
 }
 
 const CountDown = ({ hours = 0, minutes = 0, seconds = 0 }) => {
-  const [paused, setPaused] = React.useState(false);
-  const [over, setOver] = React.useState(false);
+  const [paused, setPaused] = React.useState(true);
   let [[h, m, s], setTime] = React.useState([hours, minutes, seconds]);
 
   const tick = () => {
-    if (paused || over) return;
+    if (paused) return;
 
     if (m === 60) {
       setTime([(h += 1), (m = 0), (s = 0)]);
@@ -27,8 +26,7 @@ const CountDown = ({ hours = 0, minutes = 0, seconds = 0 }) => {
 
   const reset = () => {
     setTime([parseInt(hours), parseInt(minutes), parseInt(seconds)]);
-    setPaused(false);
-    setOver(false);
+    setPaused(true);
   };
 
   React.useEffect(() => {
@@ -37,15 +35,18 @@ const CountDown = ({ hours = 0, minutes = 0, seconds = 0 }) => {
   });
 
   return (
+    <>
+    <h1>Working time</h1>
     <div>
       <p>{`${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}:${s
         .toString()
         .padStart(2, "0")}`}</p>
       <button onClick={() => setPaused(!paused)}>
-        {paused ? "Resume" : "Pause"}
+        {paused ? "Start" : "Pause"}
       </button>
-      <button onClick={() => reset()}>Restart</button>
+      <button onClick={() => reset()}>Reset</button>
     </div>
+    </>
   );
 };
 
