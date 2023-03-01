@@ -7,6 +7,7 @@ function App() {
   let [hours, setHours] = React.useState(0);
   let [minutes, setMinutes] = React.useState(0);
   let [seconds, setSeconds] = React.useState(0);
+  let [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
     axios
@@ -16,6 +17,7 @@ function App() {
         setHours(res.h);
         setMinutes(res.m);
         setSeconds(res.s);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error.message);
@@ -24,15 +26,16 @@ function App() {
 
   return (
     <>
-      <CountUp hours={hours} minutes={minutes} seconds={seconds} />
+      {
+        loading ? 'Loading...' : <CountUp hours={hours} minutes={minutes} seconds={seconds} />
+      }
     </>
   );
 }
 
 const CountUp = ({ hours, minutes, seconds }) => {
-  
   const [paused, setPaused] = React.useState(true);
-
+  
   let [[h, m, s], setTime] = React.useState([hours, minutes, seconds]);
   
   const tick = () => {
