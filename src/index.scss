@@ -17,6 +17,10 @@ body {
   background-image: url("./img/background.jpg");
   border-radius: 10px;
 
+  @media (max-width: 510px) {
+    width: 380px;
+  }
+
   .wrapper {
     width: 100%;
     background-color: rgba(119, 102, 81, 0.479);
