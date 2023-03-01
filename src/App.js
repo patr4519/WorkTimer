@@ -87,8 +87,8 @@ const CountUp = ({ hours, minutes, seconds }) => {
         <button onClick={() => setPaused(!paused)}>
           {paused ? "Start" : "Pause"}
         </button>
-        <button onClick={() => reset()}>Reset</button>
-        <button onClick={addDateToServer}>Save progress</button>
+        <button style={{'--c':  'red'}} onClick={() => reset()}>Reset</button>
+        <button style={{'--c':  'orange'}} onClick={addDateToServer}>Save progress</button>
       </div>
     </div>
   );
