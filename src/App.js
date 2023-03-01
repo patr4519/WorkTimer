@@ -3,12 +3,12 @@ import React from "react";
 function App() {
   return (
     <>
-      <CountUp />
+      <CountUp hours={1} minutes={0} seconds={0}/>
     </>
   );
 }
 
-const CountUp = ({ hours = 0, minutes = 0, seconds = 0 }) => {
+const CountUp = ({ hours, minutes, seconds }) => {
   const [paused, setPaused] = React.useState(true);
 
   let [[h, m, s], setTime] = React.useState([hours, minutes, seconds]);
@@ -35,7 +35,7 @@ const CountUp = ({ hours = 0, minutes = 0, seconds = 0 }) => {
       tick();
     }, 1000);
     return () => clearInterval(timerID);
-  });
+  }, [paused]);
 
   return (
     <>
@@ -54,26 +54,3 @@ const CountUp = ({ hours = 0, minutes = 0, seconds = 0 }) => {
 };
 
 export default App;
-
-// import React, { useState, useEffect } from 'react';
-
-// const IntervalExample = () => {
-//   const [seconds, setSeconds] = useState(0);
-
-//   useEffect(() => {
-//     const interval = setInterval(() => {
-//       setSeconds(seconds => seconds + 1);
-//     }, 1000);
-//     return () => clearInterval(interval);
-//   }, []);
-
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         {seconds} seconds have elapsed since mounting.
-//       </header>
-//     </div>
-//   );
-// };
-
-// export default IntervalExample;
