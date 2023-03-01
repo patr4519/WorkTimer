@@ -3,12 +3,12 @@ import React from "react";
 function App() {
   return (
     <>
-      <CountDown />
+      <CountUp />
     </>
   );
 }
 
-const CountDown = ({ hours = 0, minutes = 0, seconds = 0 }) => {
+const CountUp = ({ hours = 0, minutes = 0, seconds = 0 }) => {
   const [paused, setPaused] = React.useState(true);
 
   let [[h, m, s], setTime] = React.useState([hours, minutes, seconds]);
