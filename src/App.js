@@ -4,18 +4,18 @@ import React from "react";
 const link = "https://63fef788571200b7b7d2e115.mockapi.io/Time"; // lovchikov45@mail.ru
 
 function App() {
-  let hours = 1;
-  let minutes = 0;
-  let seconds = 0;
+  let [hours, setHours] = React.useState(0);
+  let [minutes, setMinutes] = React.useState(0);
+  let [seconds, setSeconds] = React.useState(0);
 
   React.useEffect(() => {
     axios
-      .get("https://63fef788571200b7b7d2e115.mockapi.io/Time")
+      .get(link)
       .then(res => (res.data[0].time))
       .then((res) => {
-        hours = res.h;
-        minutes = res.m;
-        seconds = res.s
+        setHours(res.h);
+        setMinutes(res.m);
+        setSeconds(res.s);
       })
       .catch((error) => {
         console.log(error.message);
@@ -30,10 +30,11 @@ function App() {
 }
 
 const CountUp = ({ hours, minutes, seconds }) => {
+  
   const [paused, setPaused] = React.useState(true);
 
   let [[h, m, s], setTime] = React.useState([hours, minutes, seconds]);
-
+  
   const tick = () => {
     if (paused) return;
 
