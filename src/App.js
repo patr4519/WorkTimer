@@ -4,9 +4,27 @@ import React from "react";
 const link = "https://63fef788571200b7b7d2e115.mockapi.io/Time"; // lovchikov45@mail.ru
 
 function App() {
+  let hours = 1;
+  let minutes = 0;
+  let seconds = 0;
+
+  React.useEffect(() => {
+    axios
+      .get("https://63fef788571200b7b7d2e115.mockapi.io/Time")
+      .then(res => (res.data[0].time))
+      .then((res) => {
+        hours = res.h;
+        minutes = res.m;
+        seconds = res.s
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  }, [hours, minutes, seconds])
+
   return (
     <>
-      <CountUp hours={1} minutes={0} seconds={0} />
+      <CountUp hours={hours} minutes={minutes} seconds={seconds} />
     </>
   );
 }
