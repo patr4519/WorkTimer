@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import Skeleton from "./components/Skeleton";
 
 const link = "https://63fef788571200b7b7d2e115.mockapi.io/Time"; // lovchikov45@mail.ru
 
@@ -17,7 +18,7 @@ function App() {
         setHours(res.h);
         setMinutes(res.m);
         setSeconds(res.s);
-        setLoading(false);
+        setLoading(false); // false
       })
       .catch((error) => {
         console.log(error.message);
@@ -27,7 +28,9 @@ function App() {
   return (
     <>
       {loading ? (
-        "Loading..."
+        <div className="App">
+          <Skeleton />
+        </div>
       ) : (
         <CountUp hours={hours} minutes={minutes} seconds={seconds} />
       )}
@@ -53,7 +56,7 @@ const CountUp = ({ hours, minutes, seconds }) => {
   };
 
   const reset = () => {
-    setTime([parseInt(hours), parseInt(minutes), parseInt(seconds)]);
+    setTime([0, 0, 0]);
     setPaused(true);
   };
 
@@ -88,7 +91,7 @@ const CountUp = ({ hours, minutes, seconds }) => {
           <button onClick={() => setPaused(!paused)}>
             {paused ? "Start" : "Pause"}
           </button>
-          <button style={{ "--c": "red" }} onClick={() => reset()}>
+          <button style={{ "--c": "red" }} onClick={reset}>
             Reset
           </button>
           <button style={{ "--c": "orange" }} onClick={addDateToServer}>
