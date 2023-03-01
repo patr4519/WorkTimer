@@ -79,16 +79,22 @@ const CountUp = ({ hours, minutes, seconds }) => {
 
   return (
     <div className="App">
-      <h1>Working time</h1>
-      <div className="timer">
-        <p className="time">{`${h.toString().padStart(2, "0")}:${m
-          .toString()
-          .padStart(2, "0")}:${s.toString().padStart(2, "0")}`}</p>
-        <button onClick={() => setPaused(!paused)}>
-          {paused ? "Start" : "Pause"}
-        </button>
-        <button style={{'--c':  'red'}} onClick={() => reset()}>Reset</button>
-        <button style={{'--c':  'orange'}} onClick={addDateToServer}>Save progress</button>
+      <div className="wrapper">
+        <h1>Working time</h1>
+        <div className="timer">
+          <p className="time">{`${h.toString().padStart(2, "0")}:${m
+            .toString()
+            .padStart(2, "0")}:${s.toString().padStart(2, "0")}`}</p>
+          <button onClick={() => setPaused(!paused)}>
+            {paused ? "Start" : "Pause"}
+          </button>
+          <button style={{ "--c": "red" }} onClick={() => reset()}>
+            Reset
+          </button>
+          <button style={{ "--c": "orange" }} onClick={addDateToServer}>
+            Save progress
+          </button>
+        </div>
       </div>
     </div>
   );

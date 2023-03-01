@@ -13,11 +13,16 @@ body {
 .App {
   width: 500px;
   margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   background-image: url("./img/background.jpg");
   border-radius: 10px;
+
+  .wrapper {
+    width: 100%;
+    background-color: rgba(119, 102, 81, 0.479);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
   .timer {
     display: flex;
