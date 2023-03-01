@@ -81,7 +81,7 @@ const CountUp = ({ hours, minutes, seconds }) => {
     <div className="App">
       <h1>Working time</h1>
       <div className="timer">
-        <p>{`${h.toString().padStart(2, "0")}:${m
+        <p className="time">{`${h.toString().padStart(2, "0")}:${m
           .toString()
           .padStart(2, "0")}:${s.toString().padStart(2, "0")}`}</p>
         <button onClick={() => setPaused(!paused)}>
