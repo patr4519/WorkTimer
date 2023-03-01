@@ -12,7 +12,7 @@ function App() {
   React.useEffect(() => {
     axios
       .get(link)
-      .then(res => (res.data[0].time))
+      .then((res) => res.data[0].time)
       .then((res) => {
         setHours(res.h);
         setMinutes(res.m);
@@ -22,22 +22,24 @@ function App() {
       .catch((error) => {
         console.log(error.message);
       });
-  }, [hours, minutes, seconds])
+  }, [hours, minutes, seconds]);
 
   return (
     <>
-      {
-        loading ? 'Loading...' : <CountUp hours={hours} minutes={minutes} seconds={seconds} />
-      }
+      {loading ? (
+        "Loading..."
+      ) : (
+        <CountUp hours={hours} minutes={minutes} seconds={seconds} />
+      )}
     </>
   );
 }
 
 const CountUp = ({ hours, minutes, seconds }) => {
   const [paused, setPaused] = React.useState(true);
-  
+
   let [[h, m, s], setTime] = React.useState([hours, minutes, seconds]);
-  
+
   const tick = () => {
     if (paused) return;
 
@@ -58,13 +60,13 @@ const CountUp = ({ hours, minutes, seconds }) => {
   const addDateToServer = async () => {
     try {
       await axios.delete(
-        `https://63fef788571200b7b7d2e115.mockapi.io/Time/${'1'}`
+        `https://63fef788571200b7b7d2e115.mockapi.io/Time/${"1"}`
       );
       await axios.post("https://63fef788571200b7b7d2e115.mockapi.io/Time", {
         time: { h, m, s },
       });
     } catch (error) {
-      alert("Не удалось сохранить информацию");
+      alert("Failed to save information");
     }
   };
 
@@ -76,9 +78,9 @@ const CountUp = ({ hours, minutes, seconds }) => {
   }, [paused]);
 
   return (
-    <>
+    <div className="App">
       <h1>Working time</h1>
-      <div>
+      <div className="timer">
         <p>{`${h.toString().padStart(2, "0")}:${m
           .toString()
           .padStart(2, "0")}:${s.toString().padStart(2, "0")}`}</p>
@@ -88,7 +90,7 @@ const CountUp = ({ hours, minutes, seconds }) => {
         <button onClick={() => reset()}>Reset</button>
         <button onClick={addDateToServer}>Save progress</button>
       </div>
-    </>
+    </div>
   );
 };
 
