@@ -18,7 +18,7 @@ function App() {
         setHours(res.h);
         setMinutes(res.m);
         setSeconds(res.s);
-        setLoading(false); // false
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error.message);
