@@ -1,9 +1,12 @@
+import axios from "axios";
 import React from "react";
+
+const link = "https://63fef788571200b7b7d2e115.mockapi.io/Time"; // lovchikov45@mail.ru
 
 function App() {
   return (
     <>
-      <CountUp hours={1} minutes={0} seconds={0}/>
+      <CountUp hours={1} minutes={0} seconds={0} />
     </>
   );
 }
@@ -30,6 +33,19 @@ const CountUp = ({ hours, minutes, seconds }) => {
     setPaused(true);
   };
 
+  const addDateToServer = async () => {
+    try {
+      await axios.delete(
+        `https://63fef788571200b7b7d2e115.mockapi.io/Time/${'1'}`
+      );
+      await axios.post("https://63fef788571200b7b7d2e115.mockapi.io/Time", {
+        time: { h, m, s },
+      });
+    } catch (error) {
+      alert("Не удалось сохранить информацию");
+    }
+  };
+
   React.useEffect(() => {
     const timerID = setInterval(() => {
       tick();
@@ -48,6 +64,7 @@ const CountUp = ({ hours, minutes, seconds }) => {
           {paused ? "Start" : "Pause"}
         </button>
         <button onClick={() => reset()}>Reset</button>
+        <button onClick={addDateToServer}>Save progress</button>
       </div>
     </>
   );
