@@ -44,6 +44,7 @@ const CountUp = ({ hours, minutes, seconds }) => {
   let [[h, m, s], setTime] = React.useState([hours, minutes, seconds]);
 
   const tick = () => {
+    console.log('tick')
     if (paused) return;
 
     if (m === 60) {
@@ -78,7 +79,7 @@ const CountUp = ({ hours, minutes, seconds }) => {
       tick();
     }, 1000);
     return () => clearInterval(timerID);
-  }, [paused]);
+  });
 
   return (
     <div className="App">
