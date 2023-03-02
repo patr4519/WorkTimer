@@ -44,7 +44,6 @@ const CountUp = ({ hours, minutes, seconds }) => {
   let [[h, m, s], setTime] = React.useState([hours, minutes, seconds]);
 
   const tick = () => {
-    console.log('tick')
     if (paused) return;
 
     if (m === 60) {
@@ -62,6 +61,7 @@ const CountUp = ({ hours, minutes, seconds }) => {
   };
 
   const addDateToServer = async () => {
+    setPaused((prev) => !prev);
     try {
       await axios.delete(
         `https://63fef788571200b7b7d2e115.mockapi.io/Time/${"1"}`
